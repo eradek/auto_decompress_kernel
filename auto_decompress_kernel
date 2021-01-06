@@ -20,12 +20,14 @@ if [ -e $BTPATH/check.md5 ]; then
 fi
 
 #Backup the old decompressed kernel
-mv $DKPATH $DKPATH.bak
-if [ ! $? == 0 ]; then
-  echo -e "\e[31mDECOMPRESSED KERNEL BACKUP FAILED!\e[0m"
-  exit 1
-else
-  echo -e "\e[32mDecompressed kernel backup was successful\e[0m"
+if [ -e $DKPATH ]; then
+  mv $DKPATH $DKPATH.bak
+  if [ ! $? == 0 ]; then
+    echo -e "\e[31mDECOMPRESSED KERNEL BACKUP FAILED!\e[0m"
+    exit 1
+  else
+    echo -e "\e[32mDecompressed kernel backup was successful\e[0m"
+  fi
 fi
 
 #Decompress the new kernel
